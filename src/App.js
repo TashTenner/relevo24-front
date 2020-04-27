@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import PrivateView from './views/PrivateView';
+import Login from './views/auth/Login';
+import Signup from './views/auth/Signup';
+
+// import Navbar from "./views/Navbar";
+// import MapHome from "./views/map/MapHome";
+
+import ErrorPage from "./views/ErrorPage";
+
+// import Notifications from "./components/Notifications";
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.min.css'; 
+
+import { withAuth } from './context/AuthContext';
+
+import PrivateRoute from './components/PrivateRoute';
+import AnonRoute from './components/AnonRoute';
+
+// import { theme, GlobalStyle } from "./styles";
+// import { ThemeProvider } from "styled-components";
+
+class App extends Component {
+  render() {
+    // const { handleLogout } = this.props;
+    return (
+      // <ThemeProvider theme={actualTheme}>
+      //   <GlobalStyle />
+      <>
+        {/* <button onClick={handleLogout}>logout</button> */}
+        <Router>
+          {/* <Navbar /> */}
+          <Switch>
+            <AnonRoute exact path="/login" component={Login} />
+            <AnonRoute exact path="/signup" component={Signup} />
+            <PrivateRoute exact path="/private" component={PrivateView} />
+
+            {/* <Route exact path="/" component={Home} /> */}
+
+            {/* <Route exact path="/add" component={Name} /> */}
+            {/* <PrivateRoute exact path="/admin/name/:id/edit" component={Name} /> */}
+
+            <Route path="*" component={ErrorPage} />
+          </Switch>
+        </Router>
+      </>
+      // </ThemeProvider>
+    );
+  }
 }
 
-export default App;
+export default withAuth(App);
