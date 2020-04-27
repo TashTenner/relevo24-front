@@ -5,7 +5,7 @@ import PrivateView from './views/PrivateView';
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
 
-// import Navbar from "./views/Navbar";
+import Navbar from "./components/Navbar";
 // import MapHome from "./views/map/MapHome";
 
 import ErrorPage from "./views/ErrorPage";
@@ -31,7 +31,7 @@ class App extends Component {
       <>
         {/* <button onClick={handleLogout}>logout</button> */}
         <Router>
-          {/* <Navbar /> */}
+          <Navbar />
           <Switch>
             <AnonRoute exact path="/login" component={Login} />
             <AnonRoute exact path="/signup" component={Signup} />
