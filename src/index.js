@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import AuthProvider from './context/AuthContext';
+import ThemeProvider from "./context/ThemeContext";
 
 import 'reset-css';
 import 'normalize.css';
@@ -12,7 +13,9 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <AuthProvider>
-    <App />
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </AuthProvider>,
   document.getElementById('root')
 );

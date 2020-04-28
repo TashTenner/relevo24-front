@@ -6,6 +6,7 @@ import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
 
 import Navbar from "./components/Navbar";
+import Body from "./components/Body";
 
 import Landing from "./views/Landing";
 import Dashboard from "./views/Dashboard";
@@ -18,6 +19,7 @@ import ErrorPage from "./views/ErrorPage";
 // import 'react-toastify/dist/ReactToastify.min.css'; 
 
 import { withAuth } from './context/AuthContext';
+import { withTheme } from './context/ThemeContext';
 
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
@@ -34,6 +36,7 @@ class App extends Component {
       <>
         {/* <button onClick={handleLogout}>logout</button> */}
         <Router>
+          <Body />
           <Navbar />
           <Switch>
             <AnonRoute exact path="/login" component={Login} />
@@ -57,4 +60,4 @@ class App extends Component {
   }
 }
 
-export default withAuth(App);
+export default withAuth(withTheme(App));
