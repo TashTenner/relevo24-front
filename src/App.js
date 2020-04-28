@@ -6,7 +6,10 @@ import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
 
 import Navbar from "./components/Navbar";
-// import MapHome from "./views/map/MapHome";
+
+import Landing from "./views/Landing";
+import Dashboard from "./views/Dashboard";
+import Schedule from "./views/Schedule";
 
 import ErrorPage from "./views/ErrorPage";
 
@@ -37,7 +40,10 @@ class App extends Component {
             <AnonRoute exact path="/signup" component={Signup} />
             <PrivateRoute exact path="/private" component={PrivateView} />
 
-            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/" component={Landing} />
+
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/schedule" component={Schedule} />
 
             {/* <Route exact path="/add" component={Name} /> */}
             {/* <PrivateRoute exact path="/admin/name/:id/edit" component={Name} /> */}

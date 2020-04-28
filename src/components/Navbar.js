@@ -13,19 +13,19 @@ class Navbar extends Component {
         <nav>
           <ul>
             <li>
-              <NavLink to="/">Dashboard</NavLink>
+              {user ? <NavLink to="/dashboard">Dashboard</NavLink> : <div></div>}
             </li>
             <li>
-              <NavLink to="/team">Team</NavLink>
+              {user && user.role !== "admin" ? <NavLink to="/team">Team</NavLink> : <div></div>}
             </li>
             <li>
-              <NavLink to="/profile">Profile</NavLink>
+              {user && user.role !== "admin" ? <NavLink to="/profile">Profile</NavLink> : <div></div>}
             </li>
             <li>
-              {user && user.role === "admin" ? <NavLink to="/admin/schedule">Schedule</NavLink> : <div></div>}
+              {user && user.role === "admin" ? <NavLink to="/schedule">Schedule</NavLink> : <div></div>}
             </li>
             <li>
-              {user && user.role === "employee" ? <NavLink to="/employee/payfit">API Payfit</NavLink> : <div></div>}
+              {user && user.role === "employee" ? <NavLink to="/payfit">API Payfit</NavLink> : <div></div>}
             </li>
             <li>
               {user && user ? <NavLink onClick={handleLogout} to="/">Logout</NavLink> : <NavLink to="/login">Login</NavLink>}
