@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
-import SearchUser from '../../components/SearchUser';
+import SearchPerson from '../../components/SearchPerson';
 
 class UserList extends Component {
   state = {
@@ -34,12 +34,12 @@ class UserList extends Component {
     const { users, loading } = this.state;
     return (
       <div>
-        <SearchUser search={this.search} />
+        <SearchPerson search={this.search} />
         <h1>Users</h1>
         {!loading && users.map((user) => {
           return (
             <div key={user._id}>
-              <Link to={`/users/${user._id}`}>{user.username}</Link>
+              <Link to={`/users/${user._id}/update-role`}>{user.username}</Link>
             </div>
           )
         })}

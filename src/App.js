@@ -11,6 +11,7 @@ import Body from "./components/Body";
 import Landing from "./views/Landing";
 import Dashboard from "./views/Dashboard";
 import Schedule from "./views/Schedule";
+import UserToEmployee from "./views/admin/UserToEmployee";
 
 import ErrorPage from "./views/ErrorPage";
 
@@ -47,6 +48,8 @@ class App extends Component {
 
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/schedule" component={Schedule} />
+
+            <PrivateRoute exact path="/users/:id/update-role" component={UserToEmployee} />
 
             {/* <Route exact path="/add" component={Name} /> */}
             {/* <PrivateRoute exact path="/admin/name/:id/edit" component={Name} /> */}

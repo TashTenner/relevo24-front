@@ -12,7 +12,7 @@ class ErrorPage extends Component {
   render() {
     return <div>
       <p style={{ textAlign: "center" }}>
-        <StyledLink to="/">404 - This page does not exist - Go to Home </StyledLink>
+        <StyledLink to="/">404 - This page does not exist - Home </StyledLink>
       </p>
     </div>;
   }
