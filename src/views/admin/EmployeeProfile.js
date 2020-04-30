@@ -45,6 +45,8 @@ class EmployeeProfile extends Component {
                     <td>{shift.day.dayName}</td>
                     <td>{shift.timeStart}</td>
                     <td>{shift.timeEnd}</td>
+                    <td><button className="fa fa-edit"></button></td>
+                    <td><button className="fa fa-trash-o"></button></td>
                   </tr>
 
                 )
