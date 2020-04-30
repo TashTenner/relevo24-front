@@ -22,26 +22,6 @@ class ShiftService {
       .then(({ data }) => data);
   }
 
-  // createPost(username, text, university, post_id) {
-  //   return this.post
-  //     .post(`/post/${username}/new`, { text, university, post_id })
-  //     .then(({ data }) => data);
-  // }
-
-  //   const params = {
-  //     name: "User",
-  //     startTime: "2:00PM",
-  //     endTime: "3:00PM",
-  //     status: "pending",
-  //     invitation: "test",
-  // };
-
-  // axios.post('DOMAIN/event/new', params, {
-  // headers: {
-  //   'content-type': 'application/json',
-  // },
-  // })
-
   updateShift(shift) {
     return this.axios
       .put(`/api/shifts/${shift._id}/update`, shift)

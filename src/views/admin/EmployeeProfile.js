@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import employeeService from '../../services/employeeService';
 
 class EmployeeProfile extends Component {
   state = {
-    employeeId: ""
+    employeeInfo: {},
+    employeeId: "",
+    shifts: []
   }
 
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
     try {
       const employeeId = id
-      // console.log(id)
+      const employeeInfo = await employeeService.getEmployeeById(id)
+      const shifts = employeeInfo.shifts
       this.setState({
-        employeeId
+        employeeInfo,
+        employeeId,
+        shifts
       })
     } catch (error) {
       console.log(error);
@@ -20,7 +26,7 @@ class EmployeeProfile extends Component {
   }
 
   render() {
-    const { employeeId } = this.state;
+    const { employeeId, shifts, employeeInfo } = this.state;
     return (
       <div>
         <div>link to change role:</div>
@@ -28,7 +34,24 @@ class EmployeeProfile extends Component {
         <Link to={`/employees/${employeeId}/update-role`}>update role</Link>
         <br></br>
         <Link to={`/employees/${employeeId}/add-shift`}>add shifts</Link>
-        <div>underneath you see all shifts of the employee:</div>
+        <div>underneath you see {employeeInfo.username} / employee's shifts:</div>
+        <div>
+          <table>
+            <tbody>
+              {shifts.map((shift) => {
+                return (
+
+                  <tr key={shift._id}>
+                    <td>{shift.day.dayName}</td>
+                    <td>{shift.timeStart}</td>
+                    <td>{shift.timeEnd}</td>
+                  </tr>
+
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

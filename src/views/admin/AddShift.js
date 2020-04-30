@@ -19,7 +19,6 @@ class AddShift extends Component {
       const workingDays = await workingDayService.getAllWorkingDays()
       const userId = id
       const workingDayId = workingDays[0]._id
-      // console.log(id)
       this.setState({
         userId,
         workingDayId,
@@ -37,17 +36,15 @@ class AddShift extends Component {
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-    }, () => console.log(this.state))
+    })
   }
 
   // handleSubmit = async (e) => {
-  //   console.log('newShift')
   //   e.preventDefault();
   //   try {
   //     const { userId, workingDayId, timeStart, timeEnd } = this.state;
   //     const newShift = { userId, workingDayId, timeStart, timeEnd };
   //     const { history: { push } } = this.props;
-  //     console.log(newShift)
   //     const response = await shiftService.addShift({
   //       timeStart,
   //       timeEnd,
@@ -64,11 +61,9 @@ class AddShift extends Component {
   // };
 
   handleSubmit = (e) => {
-    console.log(this.state)
     e.preventDefault();
     const { history: { push } } = this.props;
     const { timeStart, timeEnd, workingDayId, userId } = this.state;
-    // console.log(shift)
     shiftService
       .addShift(timeStart, timeEnd, workingDayId, userId)
       .then(() => { push(`/employees/${this.state.userId}/profile`); })
