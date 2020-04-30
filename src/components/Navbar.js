@@ -26,6 +26,9 @@ class Navbar extends Component {
               {user && user.role === "admin" ? <NavLink to="/schedule">Schedule</NavLink> : <div></div>}
             </li>
             <li>
+              {user && user.role === "admin" ? <NavLink to="/users">Users</NavLink> : <div></div>}
+            </li>
+            <li>
               {user && user.role === "employee" ? <NavLink to="/payfit">API Payfit</NavLink> : <div></div>}
             </li>
             <li>

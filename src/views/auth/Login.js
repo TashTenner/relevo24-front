@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { withAuth } from "../../context/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,34 +15,34 @@ class Login extends Component {
     this.setState({ [name]: value });
   }
 
-  // handleFormSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { username, password } = this.state;
-  //   this.props.handleLogin({
-  //     username,
-  //     password
-  //   });
-  // }
-
-  handleFormSubmit = async (e) => {
+  handleFormSubmit = (e) => {
     e.preventDefault();
-    try {
-      const { username, password } = this.state;
-      this.props.handleLogin({
-        username,
-        password,
-      }).then((e) => {
-        if (e.name !== 'Error') {
-          toast.success(`Hi, ${username}!`);
-        } else {
-          toast.warn(`Error`);
-        }
-      });
-    } catch (error) {
-      console.error('Error');
-      toast.error('Error');
-    }
-  };
+    const { username, password } = this.state;
+    this.props.handleLogin({
+      username,
+      password
+    });
+  }
+
+  // handleFormSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const { username, password } = this.state;
+  //     this.props.handleLogin({
+  //       username,
+  //       password,
+  //     }).then((e) => {
+  //       if (e.name !== 'Error') {
+  //         toast.success(`Hi, ${username}!`);
+  //       } else {
+  //         toast.warn(`Error`);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.error('Error');
+  //     toast.error('Error');
+  //   }
+  // };
 
   render() {
     const { username, password } = this.state;
