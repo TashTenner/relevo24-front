@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import employeeService from '../../services/employeeService';
+import shiftService from '../../services/shiftService';
 
 class EmployeeProfile extends Component {
   state = {
@@ -25,6 +26,17 @@ class EmployeeProfile extends Component {
     }
   }
 
+  deleteShift = (id) => {
+    const shallowCopyShifts = [...this.state.shifts];
+    const updatedShifts = shallowCopyShifts.filter(x => { return x._id !== id });
+    shiftService
+      .deleteShift(id)
+      .then(() => {
+        this.setState({ shifts: updatedShifts });
+      })
+      .catch(err => { });
+  };
+
   render() {
     const { employeeId, shifts, employeeInfo } = this.state;
     return (
@@ -40,15 +52,13 @@ class EmployeeProfile extends Component {
             <tbody>
               {shifts.map((shift) => {
                 return (
-
                   <tr key={shift._id}>
                     <td>{shift.day.dayName}</td>
                     <td>{shift.timeStart}</td>
                     <td>{shift.timeEnd}</td>
                     <td><button className="fa fa-edit"></button></td>
-                    <td><button className="fa fa-trash-o"></button></td>
+                    <td><button onClick={() => this.deleteShift(shift._id)} className="fa fa-trash-o"></button></td>
                   </tr>
-
                 )
               })}
             </tbody>
