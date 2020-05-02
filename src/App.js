@@ -12,6 +12,7 @@ import Landing from "./views/Landing";
 import Dashboard from "./views/Dashboard";
 import Users from './views/Users';
 import Schedule from "./views/Schedule";
+import ScheduleMonday from "./views/admin/ScheduleMonday";
 import UserToEmployee from "./views/admin/UserToEmployee";
 import EmployeeToAdmin from "./views/admin/EmployeeToAdmin";
 import Employees from "./views/admin/Employees";
@@ -53,6 +54,7 @@ class App extends Component {
 
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/schedule" component={Schedule} />
+            <PrivateRoute exact path="/schedule/monday" component={ScheduleMonday} />
             <PrivateRoute exact path="/users" component={Users} />
 
             <PrivateRoute exact path="/users/:id/update-role" component={UserToEmployee} />

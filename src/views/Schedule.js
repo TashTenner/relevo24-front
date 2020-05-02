@@ -10,6 +10,8 @@ class Schedule extends Component {
         <div>add sick leave / holidays of your employees</div>
 
         <Link to={`/employees/`}>employees</Link>
+        <br></br>
+        <Link to={`/schedule/monday`}>Monday</Link>
       </>
     );
   }
