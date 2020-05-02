@@ -12,8 +12,7 @@ function AnonRoute({ component: Comp, isLoggedin, ...rest }) {
         ) : (
             <Redirect
               to={{
-                pathname: "/private",
-                // to profile or to dashboard
+                pathname: "/dashboard",
               }}
             />
           )

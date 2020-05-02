@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
-import PrivateView from './views/PrivateView';
+// import PrivateView from './views/PrivateView';
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
 
@@ -17,6 +17,7 @@ import EmployeeToAdmin from "./views/admin/EmployeeToAdmin";
 import Employees from "./views/admin/Employees";
 import EmployeeProfile from "./views/admin/EmployeeProfile";
 import AddShift from './views/admin/AddShift';
+import EditShift from './views/admin/EditShift';
 
 import ErrorPage from "./views/ErrorPage";
 
@@ -45,10 +46,10 @@ class App extends Component {
           <Body />
           <Navbar />
           <Switch>
+            <Route exact path="/" component={Landing} />
             <AnonRoute exact path="/login" component={Login} />
             <AnonRoute exact path="/signup" component={Signup} />
-            <PrivateRoute exact path="/private" component={PrivateView} />
-            <Route exact path="/" component={Landing} />
+            {/* <PrivateRoute exact path="/private" component={PrivateView} /> */}
 
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/schedule" component={Schedule} />
@@ -60,6 +61,7 @@ class App extends Component {
             <PrivateRoute exact path="/employees/:id/update-role" component={EmployeeToAdmin} />
 
             <PrivateRoute exact path="/employees/:id/add-shift" component={AddShift} />
+            <PrivateRoute exact path="/employees/:id/edit-shift/:id" component={EditShift} />
 
             {/* <Route exact path="/add" component={Name} /> */}
             {/* <PrivateRoute exact path="/admin/name/:id/edit" component={Name} /> */}

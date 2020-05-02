@@ -3,7 +3,7 @@ import shiftService from '../../services/shiftService';
 import workingDayService from '../../services/workingDayService';
 import { withAuth } from '../../context/AuthContext';
 
-class AddShift extends Component {
+class EditShift extends Component {
   state = {
     userId: "",
     workingDayId: "",
@@ -16,10 +16,16 @@ class AddShift extends Component {
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
     try {
+      const shift = await shiftService.getShiftById(id)
       const workingDays = await workingDayService.getAllWorkingDays()
-      const userId = id
-      const workingDayId = workingDays[0]._id
+
+      const timeStart = shift.timeStart
+      const timeEnd = shift.timeEnd
+      const userId = shift.employee._id
+      const workingDayId = shift.day._id
       this.setState({
+        timeStart,
+        timeEnd,
         userId,
         workingDayId,
         workingDays,
@@ -34,39 +40,24 @@ class AddShift extends Component {
   }
 
   handleChange = (e) => {
+    const { timeStart, timeEnd, workingDayId, userId } = this.state;
     this.setState({
       [e.target.name]: e.target.value,
     })
+    console.log(timeStart, timeEnd, workingDayId);
+    console.log(this.props.match.params.id)
+    console.log(userId)
   }
-
-  // handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const { userId, workingDayId, timeStart, timeEnd } = this.state;
-  //     const newShift = { userId, workingDayId, timeStart, timeEnd };
-  //     const { history: { push } } = this.props;
-  //     const response = await shiftService.addShift({
-  //       timeStart,
-  //       timeEnd,
-  //       employee: userId,
-  //       day: workingDayId,
-  //     })
-  //     this.setState({ storageValue: response });
-  //       then(() => {
-  //         push(`/employees/${userId}/profile`)
-  //       });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { history: { push } } = this.props;
     const { timeStart, timeEnd, workingDayId, userId } = this.state;
+    const shiftId = this.props.match.params.id;
+    const { history: { push } } = this.props;
+    console.log(timeStart, timeEnd, workingDayId, shiftId, userId);
     shiftService
-      .addShift(timeStart, timeEnd, workingDayId, userId)
-      .then(() => { push(`/employees/${this.state.userId}/profile`); })
+      .updateShift(shiftId, timeStart, timeEnd, workingDayId)
+      .then(() => { push(`/employees/${userId}/profile`); })
       .catch(error => console.log(error))
   };
 
@@ -74,11 +65,12 @@ class AddShift extends Component {
     const { timeStart, timeEnd, workingDays, loading } = this.state;
 
     return (
+
       <div>
         {loading && <div>Loading...</div>}
         {!loading && (
           <>
-            <div>add shift</div>
+            <div>update shift</div>
 
             <form onSubmit={this.handleSubmit}>
 
@@ -96,7 +88,7 @@ class AddShift extends Component {
                   )
                 })}
               </select>
-              <button type="submit">add shift</button>
+              <button type="submit">update shift</button>
             </form>
           </>
         )}
@@ -105,4 +97,4 @@ class AddShift extends Component {
   }
 }
 
-export default withAuth(AddShift);
+export default withAuth(EditShift);

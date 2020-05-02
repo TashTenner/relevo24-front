@@ -22,10 +22,10 @@ class ShiftService {
       .then(({ data }) => data);
   }
 
-  updateShift(shift) {
+  updateShift(shiftId, timeStart, timeEnd, workingDayId) {
     return this.axios
-      .put(`/api/shifts/${shift._id}/update`, shift)
-      .then(({ data: shift }) => shift);
+      .put(`/api/shifts/${shiftId}/update`, { timeStart, timeEnd, workingDayId })
+      .then(({ data }) => data);
   }
 
   deleteShift(id) {

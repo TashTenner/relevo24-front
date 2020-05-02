@@ -56,7 +56,11 @@ class EmployeeProfile extends Component {
                     <td>{shift.day.dayName}</td>
                     <td>{shift.timeStart}</td>
                     <td>{shift.timeEnd}</td>
-                    <td><button className="fa fa-edit"></button></td>
+                    <td>
+                      <Link to={`/employees/${employeeId}/edit-shift/${shift._id}`}>
+                        <button className="fa fa-edit"></button>
+                      </Link>
+                    </td>
                     <td><button onClick={() => this.deleteShift(shift._id)} className="fa fa-trash-o"></button></td>
                   </tr>
                 )
