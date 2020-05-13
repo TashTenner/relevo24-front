@@ -40,13 +40,9 @@ class EditShift extends Component {
   }
 
   handleChange = (e) => {
-    const { timeStart, timeEnd, workingDayId, userId } = this.state;
     this.setState({
       [e.target.name]: e.target.value,
     })
-    console.log(timeStart, timeEnd, workingDayId);
-    console.log(this.props.match.params.id)
-    console.log(userId)
   }
 
   handleSubmit = (e) => {
@@ -54,7 +50,6 @@ class EditShift extends Component {
     const { timeStart, timeEnd, workingDayId, userId } = this.state;
     const shiftId = this.props.match.params.id;
     const { history: { push } } = this.props;
-    console.log(timeStart, timeEnd, workingDayId, shiftId, userId);
     shiftService
       .updateShift(shiftId, timeStart, timeEnd, workingDayId)
       .then(() => { push(`/employees/${userId}/profile`); })
@@ -75,10 +70,10 @@ class EditShift extends Component {
             <form onSubmit={this.handleSubmit}>
 
               <label htmlFor="timeStart">timeStart</label>
-              <input type="text" name="timeStart" id="timeStart" value={timeStart} placeholder="00:00" onChange={this.handleChange} />
+              <input type="time" name="timeStart" id="timeStart" value={timeStart} placeholder="00:00" onChange={this.handleChange} />
 
               <label htmlFor="timeEnd">timeEnd</label>
-              <input type="text" name="timeEnd" id="timeEnd" value={timeEnd} placeholder="00:00" onChange={this.handleChange} />
+              <input type="time" name="timeEnd" id="timeEnd" value={timeEnd} placeholder="00:00" onChange={this.handleChange} />
 
               <label htmlFor="day">Day</label>
               <select type="text" name="workingDayId" id="workingDayId" onChange={this.handleChange}>

@@ -168,9 +168,17 @@ class Schedule extends React.Component {
     try {
       return await workingDays.filter((day) => day.dayName === 'Monday').map((workingDay) => {
         return workingDay.shifts.map((shift, i) => {
+
+          const timeStartTempHour = shift.timeStart.slice(0, 2);
+          const timeStartTempTempMin = shift.timeStart.slice(3);
+
+          const timeStartNoPoints = timeStartTempHour.concat('', timeStartTempTempMin);
+
           let normalised = ((shift.duration / 60) * this.state.divider).toFixed();
-          let startMin = shift.timeStart.slice(shift.timeStart.length - 2);
-          let startHour = shift.timeStart.slice(0, 2) + "00";
+
+          let startMin = timeStartNoPoints.slice(timeStartNoPoints.length - 2);
+          let startHour = timeStartNoPoints.slice(0, 2) + "00";
+
           let xStart =
             version2.findIndex(y => y.time === startHour) * this.state.divider +
             (startMin / 60) * this.state.divider +
