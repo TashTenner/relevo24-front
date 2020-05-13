@@ -8,8 +8,7 @@ class Schedule extends Component {
         <div>change shifts of your employees</div>
         <div>add notes to the calendar</div>
         <div>add sick leave / holidays of your employees</div>
-
-        <Link to={`/employees/`}>employees</Link>
+        <Link to={`/employees`}>employees</Link>
         <br></br>
         <Link to={`/schedule/monday`}>Monday</Link>
       </>

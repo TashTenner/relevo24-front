@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
-// import PrivateView from './views/PrivateView';
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
 
@@ -32,17 +31,10 @@ import { withTheme } from './context/ThemeContext';
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
 
-// import { theme, GlobalStyle } from "./styles";
-// import { ThemeProvider } from "styled-components";
-
 class App extends Component {
   render() {
-    // const { user } = this.props;
     return (
-      // <ThemeProvider theme={actualTheme}>
-      //   <GlobalStyle />
       <>
-        {/* <button onClick={handleLogout}>logout</button> */}
         <Router>
           <Body />
           <Navbar />
@@ -50,7 +42,6 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <AnonRoute exact path="/login" component={Login} />
             <AnonRoute exact path="/signup" component={Signup} />
-            {/* <PrivateRoute exact path="/private" component={PrivateView} /> */}
 
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/schedule" component={Schedule} />
@@ -65,14 +56,10 @@ class App extends Component {
             <PrivateRoute exact path="/employees/:id/add-shift" component={AddShift} />
             <PrivateRoute exact path="/employees/:id/edit-shift/:id" component={EditShift} />
 
-            {/* <Route exact path="/add" component={Name} /> */}
-            {/* <PrivateRoute exact path="/admin/name/:id/edit" component={Name} /> */}
-
             <Route path="*" component={ErrorPage} />
           </Switch>
         </Router>
       </>
-      // </ThemeProvider>
     );
   }
 }

@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import workingDayService from '../../services/workingDayService';
+import ScheduleTest from "./ScheduleTest";
 
 class ScheduleMonday extends Component {
   state = {
-    workingDays: [],
-    // employeeId: "",
-    // employeesTeam: []
+    workingDays: []
   }
 
   async componentDidMount() {
-    // const { match: { params: { id } } } = this.props;
     try {
-      // const employeeId = id
       const workingDays = await workingDayService.getAllWorkingDays()
-      // const employeesTeam = workingDays.employeesTeam
       this.setState({
-        workingDays,
-        // employeeId,
-        // employeesTeam
+        workingDays
       })
     } catch (error) {
       console.log(error);
@@ -49,6 +43,7 @@ class ScheduleMonday extends Component {
             </table>
           </div>
         </div>
+        <ScheduleTest />
       </>
     );
   }

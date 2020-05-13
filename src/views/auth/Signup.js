@@ -31,18 +31,11 @@ class Signup extends Component {
   //     const { username, password } = this.state;
   //     this.props.handleSignup({
   //       username,
-  //       password
-  //     }).then((user) => {
-  //       if (user.name === 'Error') {
-  //         console.log(user);
-  //         return toast.warn('Error');
-  //       } else {
-  //         return toast.success(`Hi there, ${username}!`);
-  //       }
+  //       password,
   //     });
+  //     toast.success('Welcome');
   //   } catch (error) {
-  //     console.error('Error during register.');
-  //     console.log(error);
+  //     console.error('Error');
   //   }
   // };
 
@@ -60,7 +53,6 @@ class Signup extends Component {
         <p>Already have account?
           <Link to={"/login"}> Login</Link>
         </p>
-
       </div>
     )
   }
