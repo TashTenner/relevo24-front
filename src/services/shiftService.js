@@ -16,15 +16,15 @@ class ShiftService {
     return this.axios.get(`/api/shifts/${id}`).then(({ data: shift }) => shift);
   }
 
-  addShift(timeStartTemp, timeEnd, workingDayId, userId) {
+  addShift(timeStart, timeEnd, workingDayId, userId) {
     return this.axios
-      .post(`/api/shifts/add`, { timeStartTemp, timeEnd, workingDayId, userId })
+      .post(`/api/shifts/add`, { timeStart, timeEnd, workingDayId, userId })
       .then(({ data }) => data);
   }
 
-  updateShift(shiftId, timeStartTemp, timeEnd, workingDayId) {
+  updateShift(shiftId, timeStart, timeEnd, workingDayId) {
     return this.axios
-      .put(`/api/shifts/${shiftId}/update`, { timeStartTemp, timeEnd, workingDayId })
+      .put(`/api/shifts/${shiftId}/update`, { timeStart, timeEnd, workingDayId })
       .then(({ data }) => data);
   }
 

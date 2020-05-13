@@ -63,15 +63,15 @@ class AddShift extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { history: { push } } = this.props;
-    const { timeStartTemp, timeEnd, workingDayId, userId } = this.state;
+    const { timeStart, timeEnd, workingDayId, userId } = this.state;
     shiftService
-      .addShift(timeStartTemp, timeEnd, workingDayId, userId)
+      .addShift(timeStart, timeEnd, workingDayId, userId)
       .then(() => { push(`/employees/${this.state.userId}/profile`); })
       .catch(error => console.log(error))
   };
 
   render() {
-    const { timeStartTemp, timeEnd, workingDays, loading } = this.state;
+    const { timeStart, timeEnd, workingDays, loading } = this.state;
 
     return (
       <div>
@@ -82,8 +82,8 @@ class AddShift extends Component {
 
             <form onSubmit={this.handleSubmit}>
 
-              <label htmlFor="timeStartTemp">timeStart</label>
-              <input type="time" name="timeStartTemp" id="timeStartTemp" value={timeStartTemp} placeholder="00:00" onChange={this.handleChange} />
+              <label htmlFor="timeStart">timeStart</label>
+              <input type="time" name="timeStart" id="timeStart" value={timeStart} placeholder="00:00" onChange={this.handleChange} />
 
               <label htmlFor="timeEnd">timeEnd</label>
               <input type="time" name="timeEnd" id="timeEnd" value={timeEnd} placeholder="00:00" onChange={this.handleChange} />
